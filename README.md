@@ -1,14 +1,36 @@
-# CoolChat-v2.0
+# universal-react-seed
+
+### 技术架构
+
+采用同构React模式 + webpack进行开发
+
+同构框架：
+React + React-Router + Redux + Express(MVC)
+
+开发环境框架：
+webpack-dev-middleware
+webpack-hot-moudle-middleware
+koa
+gulp
+gulp-nodemon
+webpack
+
+打包工具：
+webpack
+
+主要插件：
+superagent
+bluebird
+immutabel
+loadsh
 
 ### 安装软件
 
-- Node.js：v5.0+
+- Node.js：v6.0+
 
 ### 安装依赖模块
 
 ``` bash
-$ npm install -g gulp webpack
-$ npm install -g node-dev # 推荐这个工具，代码改动会自动重启node进程
 $ npm install
 ```
 
@@ -26,59 +48,56 @@ $ npm install
 
 ``` js
 .
+├── .babelrc                       # Babel规则
 ├── gulpfile.js                    # gulp任务配置
-├── mock/                          # 假数据文件
+├── npm-shrinkwrap.json            # 包依赖关系管理
 ├── package.json                   # 项目配置
+├── Procfile                       # 项目正式环境命令
 ├── README.md                      # 项目说明
+├── app                            # 客户端文件
+│   ├── actions                    # Redux action
+│   ├── assets                     # 项目静态资产（图片、字体、flash)
+│   ├── components                 # 项目公用组件
+│   │   ├── images                 # 组件依赖图片
+│   │   ├── __unit__.js            # 组件单元测试入口文件
+│   │   ├── view.less              # 组件依赖样式
+│   │   └── index.js               # 组件文件（JSX）
+│   ├── config                     # 客户端配置文件（未使用待定）
+│   ├── middleware                 # Redux 中间件
+│   ├── reducers                   # Redux reducer
+│   ├── routes                     # React 动态路由
+│   │   ├── components             # 路由关联的展示组件（文件结构同公用组件）
+│   │   ├── container              # 路由关联的容器组件（文件结构同公用组件）
+│   │   ├── routes                 # 动态路由的子路由
+│   │   │   ├── ...                # 重复上层结构   
+│   │   └── index.js               # 路由文件
+│   ├── store                      # Redux stroe
+│   ├── styles                     # 项目公用样式
+│   └── app.js                     # 客户端入口文件
 ├── configs                        # 项目配置
 │   ├── environments               # 环境配置
 │   │   ├── dependencies.js        # 项目依赖
 │   │   └── index.js               # 项目环境变量
-│   ├── karam/                     # 单元测试配置文件
+│   ├── karam                      # 单元测试配置文件
 │   ├── webpack                    # webpack配置文件
-│   └── webpack-dev-middleware/    # webpack开发中间件配置
-├── server                         # 本地server
-│   ├── app.js                     # 本地server入口
-│   ├── home.jade                  # 列出项目所有入口文件、组件、自定义插件
-│   ├── error.jade                 # 错误显示模板
-│   └── routes.js                  # 本地路由配置
-└── src                            # 源码目录
-    ├── index.html                 # 页面文件
-    ├── css/                       # css资源
-    ├── img/                       # 图片资源
-    ├── scripts                    # js资源
-    │   ├── actions/               # Reflux Action文件夹
-    │   ├── apis/                  # 异步请求文件
-    │   ├── components/            # 组件
-    │   ├── helpers/               # 业务相关的辅助工具
-    │   ├── map/                   # 数据类型的映射表
-    │   ├── stores/                # Reflux Store文件夹
-    │   ├── plugins/               # 自定义插件
-    │   ├── utils/                 # 业务无关的辅助工具
-    │   ├── vendor/                # 没有存放在npm的第三方库或者下载存放到本地的基础库，如jQuery、Zepto、React等
-    │   ├── app.js                 # 项目入口文件
-    │   └── router.js              # app路由配置
-    ├── less/                      # less资源
-    ├── pathmap.json               # 手动配置某些模块的路径，可以加快webpack的编译速度
-    └── tmpl/                      # 模板目录
-```
-
-### 编译
-
-``` bash
-$ npm run build
-```
-
-### 模拟生产环境
-
-``` bash
-$ npm run release
-```
-
-### 部署&发布
-
-纯静态页面型的应用，最简单的做法是直接把`assets`文件夹部署到指定机器即可（先配置好机器ip、密码、上传路径等信息）：
-
-``` js
-$ npm run deploy # or run `gulp deploy`
+│   │   ├── common.config.js       # webpack公用配置
+│   │   ├── development.config.js  # webpack开发环境配置
+│   │   ├── production.config.js   # webpack生产环境配置
+│   │   ├── server.config.js       # webpack服务器配置
+│   └── webpack-dev                # webpack开发服务器配置
+├── dist                           # 编译后生成的文件
+└── server                         # 服务器端文件
+    ├── controllers                # 服务器controller
+    ├── dev                        # 开发环境服务器文件
+    │   ├── components.dev.js      # 组件单元测试路由
+    │   └── webpack.server.js      # webpack开发服务器执行文件
+    ├── middlewares                # 服务器中间件
+    ├── proxy                      # 请求代理
+    ├── views                      # 服务器视图
+    │   ├── component-unit.html    # 组件单元测试模板（webpack打包用）
+    │   ├── index.ejs              # 客户端主页面模板
+    │   └── unit.ejs               # 组件单元测试模板（Express渲染）
+    ├── api_router.js              # 数据接口路由
+    ├── mock_api.js                # 模拟数据文件
+    └── server.js                  # 服务器端执行文件（webpack打包入口）
 ```
