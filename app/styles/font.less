@@ -1,0 +1,44 @@
+@charset "UTF-8";
+/**
+ * font style
+ * @authors weeast (weeast.cd@gmail.com)
+ * @date    2016-05-25 13:44:40
+ */
+
+ @import "_mixins.less";
+
+ @font-face {
+    font-family: euroLOL;
+    src: url('http://lol.766.com/tour/weixin/font/');
+} 
+
+@font-face {
+    font-family: euroDOTA;
+    src: url('http://dota2.766.com/tour/weixin/font/');
+} 
+ 
+.font-light(@size: 14px){
+    color: #fff;
+    font-size: @size;
+}
+
+.font-dark(@size: 14px){
+    color: #a1a1a6;
+    font-size: @size;
+}
+
+.font-text(@size: 14px){
+    color: #d3d2d2;
+    font-size: @size;
+}
+
+.font-main(@size: 14px){
+    color: #a1a2a8;
+    font-size: @size;
+}
+
+.font-euro(@size: 14px, @color: #fff){
+    font-family: euroLOL,euroDOTA;
+    font-size: @size;
+    color: @color;
+}

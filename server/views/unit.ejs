@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Component Units</title>
+  </head>
+  <body>
+    <h1>Component Units</h1>
+    <p><a href="http://localhost:4000/">Goes to the Index!</a></p>
+    <h2>Common Components</h2>
+    <% comps.forEach(function(comp){ %>
+      <a href="http://localhost:4001/static/__components__<%= comp + '.html' %>"><%= comp %></a>
+    <% }) %>
+    <h2>Routes Comonents</h2>
+    <% for(var key in routeComps){ %>
+      <h3><% key %></h3>
+      <% for(var routeComp in routeComps[key]){ %>
+        <a href="http://localhost:4001/static/__components__<%= routeComps[key][routeComp] + '.html' %>"><%= routeComp %></a>
+      <% } %>
+    <% } %>
+  </body>
+</html>
+
